@@ -2,11 +2,13 @@
 
 ![WeChatBack 封面](images/wechatback-cover.png)
 
+> 摘要：微信自带的备份只能恢复到微信里，不能全文检索。本文记录我把 166 万条微信 4.x 聊天记录、19.5 万张图片、3,061 个文件导出为 Obsidian 本地知识库的完整过程，包括 SQLCipher4 数据库、`.dat` 图片解密、媒体去重、增量维护和 SMB 踩坑。项目已开源。
+>
 > 项目地址：<https://github.com/xztjhs/wechatback>
 >
 > 技术栈：Python 3.11 / SQLite / SQLCipher4 / Obsidian / PowerShell
 >
-> 标签：微信备份、Obsidian、数据归档、Python、SQLite
+> 建议标签：微信备份、Obsidian、数据归档、Python、SQLite
 
 ---
 

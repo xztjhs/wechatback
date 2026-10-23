@@ -41,14 +41,19 @@ def cmd_doctor(args) -> int:
 def cmd_key(args) -> int:
     cfg = load_config()
     cfg.ensure_dirs()
+    p = cfg.secrets_dir / "db_keys.json"
     if args.action == "show":
-        p = cfg.secrets_dir / "image_key.json"
-        print(p.read_text(encoding="utf-8") if p.exists() else "no image key cache")
+        if not p.exists():
+            print("no db key file:", p)
+            return 1
+        data = json.loads(p.read_text(encoding="utf-8"))
+        print("db key file:", p)
+        print("databases  :", len([k for k in data if not k.startswith("_")]))
         return 0
     if args.action == "refresh":
-        ik = keys.load_or_create_image_key(cfg)
-        print(json.dumps(ik, ensure_ascii=False, indent=2))
-        return 0
+        print("Run this from an elevated PowerShell, with WeChat running:")
+        print(r"  powershell -ExecutionPolicy Bypass -File scripts\decrypt-db.ps1")
+        return 1
     return 0
 
 

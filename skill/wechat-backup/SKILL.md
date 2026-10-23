@@ -95,7 +95,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\sync-system.ps1 -Dest $env:WE
 | 现象 | 处理 |
 |---|---|
 | `doctor` 找不到微信 | 启动并登录 `Weixin.exe`（4.x） |
-| DB key 0 命中 | 管理员运行；确认微信版本；重跑 `key refresh` |
+| DB key 0 命中 | 管理员运行；确认微信版本；重跑 `scripts\decrypt-db.ps1` |
 | 图片首块对、整图错 | 检查 AES 段是否 `aes_size + 16`、是否 unpad |
 | 图片整批失败 | 检查 UIN 是否来自 `kvcomm`，用 PIL 完整校验 |
 | `media` 行有、文件无 | SMB `exists()` 缓存；重置 `pending` 后 `media` 补跑 |

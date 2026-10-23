@@ -44,7 +44,7 @@
 微信 4.x（只读）
   db_storage/*.db          msg/attach/**/*.dat       msg/video|file/**
         │                         │                        │
-        │ VSS/临时副本             │ 直接只读                │ 直接只读
+        │ 只读/解密副本             │ 直接只读                │ 直接只读
         ▼                         ▼                        ▼
   DB Decryptor              Image Decoder             Media Hasher
   SQLCipher4                AES + XOR + WXGF          SHA-256 去重
@@ -72,13 +72,15 @@
 ### 2. 安装
 
 ```powershell
-git clone https://github.com/your-name/wechatback.git
+git clone https://github.com/xztjhs/wechatback.git
 cd wechatback
 
 py -3.11 -m venv .venv
 .venv\Scripts\activate
 pip install -e .
 ```
+
+> 数据库取钥/解密使用 MIT 协议的 [wcdb-key-tool](tools/wcdb-key-tool/README.md)，已放在 `tools/wcdb-key-tool/`，无需额外安装。
 
 ### 3. 配置
 
@@ -93,7 +95,7 @@ notepad "$env:USERPROFILE\.wechatback\config.toml"
 ```toml
 [vault]
 root = 'D:\WeChatBackVault'
-system_dir = '%USERPROFILE%\.wechatback'
+system_dir = 'C:\Users\YOUR_NAME\.wechatback'
 
 [wechat]
 data_root = 'D:\WeChatData\xwechat_files'
@@ -114,7 +116,7 @@ data_root = 'D:\WeChatData\xwechat_files'
 ```powershell
 # 管理员 PowerShell，微信保持登录
 wechatback doctor
-wechatback key refresh          # 提取数据库密钥
+powershell -ExecutionPolicy Bypass -File .\scripts\decrypt-db.ps1
 wechatback image-key probe      # 抽样验证图片密钥
 
 # 只导 20 条，确认 Vault 能打开
@@ -193,7 +195,7 @@ D:\WeChatBackVault\
 
 ```powershell
 wechatback doctor                       # 环境自检
-wechatback key refresh                  # 重新提取数据库密钥
+powershell -ExecutionPolicy Bypass -File .\scripts\decrypt-db.ps1  # 重新提取 DB key 并解密
 wechatback image-key probe              # 验证图片密钥
 wechatback export --full                # 全量
 wechatback export --incremental         # 增量

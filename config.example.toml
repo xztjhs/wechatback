@@ -1,0 +1,50 @@
+# WeChatBack 配置模板
+# 复制到 %USERPROFILE%\.wechatback\config.toml 后修改。
+# 不要提交真实配置、密钥或导出数据到 Git。
+
+[vault]
+# Obsidian 工作库（建议本地磁盘，不要直接放 SMB）
+root = 'D:\WeChatBackVault'
+# 密钥、归档库、状态、日志、隔离区
+system_dir = 'C:\Users\YOUR_NAME\.wechatback'
+
+[wechat]
+# 微信 4.x 数据根目录，按实际安装位置修改
+data_root = 'D:\WeChatData\xwechat_files'
+# 留空则自动探测最近写入的账号目录
+account = ''
+process_name = 'Weixin.exe'
+
+[scope]
+text = true
+images = true
+thumbnails = true
+stickers = true
+voice = false
+# video/file: link | copy | hybrid
+videos = 'copy'
+files = 'copy'
+hybrid_max_mb = 50
+
+[render]
+chunk = 'month'
+max_messages_per_note = 5000
+inline = 'thumb'          # thumb | full
+escape_markdown = true
+
+[media]
+image_format = 'auto'     # auto | jpg | png
+thumb_format = 'jpg'
+thumb_max_edge = 480
+thumb_quality = 85
+# 不填则使用 PATH 中的 ffmpeg
+# ffmpeg = 'C:\Tools\ffmpeg\bin\ffmpeg.exe'
+workers = 16
+
+[gateway]
+bind = '127.0.0.1:8765'
+token = ''                # 留空则不校验
+
+[schedule]
+incremental_daily = '12:30'
+reconcile_cron = '0 3 1-7 * 0'

@@ -30,6 +30,9 @@ cd $env:WECHATBACK_REPO
 # 自检
 .venv\Scripts\python.exe -m wechatback.cli doctor
 
+# 首次：提取 DB key 并解密（管理员，微信保持登录）
+powershell -ExecutionPolicy Bypass -File .\scripts\decrypt-db.ps1
+
 # 增量 + 同步发布（推荐）
 powershell -ExecutionPolicy Bypass -File .\scripts\publish.ps1
 

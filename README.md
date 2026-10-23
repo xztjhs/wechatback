@@ -1,5 +1,7 @@
 # WeChatBack
 
+![WeChatBack](docs/images/wechatback-cover.png)
+
 把本机微信 4.x 的聊天记录导出为 **Obsidian 可直接打开、可直接搜索** 的本地知识库。
 
 > 只读采集本机、本人账号的已登录数据；不抓包、不绕过登录、不上传云端。仓库内不含任何真实聊天数据、密钥或数据库。

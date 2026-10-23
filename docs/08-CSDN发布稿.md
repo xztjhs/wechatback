@@ -1,5 +1,7 @@
 # 166 万条微信聊天记录，我把它搬进了 Obsidian：WeChatBack 开源实战
 
+![WeChatBack 封面](images/wechatback-cover.png)
+
 > 项目地址：<https://github.com/xztjhs/wechatback>
 >
 > 技术栈：Python 3.11 / SQLite / SQLCipher4 / Obsidian / PowerShell
